@@ -15,7 +15,7 @@ class Block {
     }
     static genesis() {
         // return new this(GENESIS_DATA);
-        const timestamp = Date.now();
+        const timestamp = -1;
         const data = "Initial Block";
         const prevHash = null;
         const nonce = 0;

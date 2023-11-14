@@ -17,16 +17,16 @@ class Blockchain {
     static isValidChain(chain) {
 
         // Comparing genesis block
-        // console.log("chain[0]", JSON.stringify(chain[0]))
-        // console.log("Block.genesis()",JSON.stringify(Block.genesis()))
         if (JSON.stringify(chain[0]) !== JSON.stringify(Block.genesis())) {
             return false;
         }
+        console.log("is Generes", true)
         // Validating each block in the chain
         for (let index = 1; index < chain.length; index++) {
             const eachBlock = chain[index];
             const { timestamp, prevHash, hash, nonce, difficulty, data } = eachBlock;
-            const lastDifficulty = chain[index-1].difficulty;
+            const lastDifficulty = chain[index - 1].difficulty;
+
             // Fetching last block hash
             const actualHash = chain[index - 1].hash;
 
@@ -36,10 +36,13 @@ class Blockchain {
             // Validating hash of exisitng each block hash
             const validatedHash = cryptoHash(timestamp, prevHash, data, nonce, difficulty);
             if (hash !== validatedHash) return false;
-            console.log("lastDifficulty",lastDifficulty)
-            console.log("difficulty",difficulty)
-            console.log("lastDifficulty - difficulty",lastDifficulty - difficulty)
+            console.log("is validatedHash", true)
+
+            // console.log("lastDifficulty",lastDifficulty)
+            // console.log("difficulty",difficulty)
+            // console.log("lastDifficulty - difficulty",lastDifficulty - difficulty)
             if(Math.abs(lastDifficulty - difficulty)> 1) return false;
+            console.log("is difficulty", true)
 
         }
         return true
@@ -52,7 +55,7 @@ class Blockchain {
         }
 
         if (!Blockchain.isValidChain(incomingChain)) {
-            console.error("The incoming chain must be valid")
+            console.error("The incoming chain is not valid")
             return;
         }
         this.chain = incomingChain;
