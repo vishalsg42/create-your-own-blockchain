@@ -71,8 +71,16 @@ class Block {
 // const genesisBlock = new Block({
 //     timestamp: new Date(),
 //     prevHash: null,
-//     hash: "0x123",
 //     data: ["100"]
+//     nonce: 0,
+// })
+
+// target level ==> dififculty => 0000
+// const genesisBlock = new Block({
+//     timestamp: new Date(),
+//     prevHash: 0x123,
+//     data: ["100"]
+//     hash: "0xqdasdas",
 // })
 
 // const genesisBlock = Block.mineBlock({
